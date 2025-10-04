@@ -51,7 +51,6 @@ int main() {
         if (cont == "n") {
             break;
         }
-        printList(head);
     }
     printList(head);
     deleteList(head);
@@ -70,10 +69,10 @@ void printList(Review * head) {
         sum += head->rating;
         cout << "Review " << i << ": " << endl;
         cout << "Rating: " << head->rating << endl;
-        cout << "Comments: " << head->review << endl;
+        cout << "Comments: " << head->review << endl << endl;
         head = head->next;
     }
-    cout << endl << "Average Rating: " << (sum / i);
+    cout << endl << "Average Rating: " << (sum / i) << endl;
 }
 
 void addHead(Review * &head, float rating, string review) {
@@ -104,6 +103,7 @@ void addTail(Review * &head, float rating, string review) {
     else {
         temp->rating = rating;
         temp->review = review;
+        temp->next = nullptr;
         iter = head;
         while(iter->next != nullptr) {
             iter = iter->next;
