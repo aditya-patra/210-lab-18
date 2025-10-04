@@ -20,6 +20,9 @@ struct Review {
     Review *next;
 };
 
+void printList(Review *);
+void addHead(Review * &, float, string);
+void addTail(Review * &, float, string);
 
 int main() {
     Review *head = nullptr;
@@ -51,4 +54,38 @@ int main() {
     printList(head);
 
     return 0;
+}
+
+void printList(Review * head) {
+    if (head == nullptr) {
+        return;
+    }
+    Review * iter = head;
+    int i = 0;
+    float sum = 0;
+    while (iter != 0) {
+        i++;
+        sum += iter->rating;
+        cout << "Review " << i << ": " << endl;
+        cout << "Rating: " << iter->rating << endl;
+        cout << "Comments: " << iter->review << endl;
+        iter = iter->next;
+    }
+    cout << endl << "Average Rating: " << (sum / i);
+}
+
+void addHead(Review * &head, float rating, string review) {
+    Review * temp = new Review;
+    if (!head) {
+        head = temp;
+        temp->next = nullptr;
+        temp->rating = rating;
+        temp->review = review;
+    }
+    else {
+        temp->next = head;
+        temp->rating = rating;
+        temp->review = review;
+        head = temp;
+    }
 }
